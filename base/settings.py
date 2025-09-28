@@ -79,10 +79,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'base.wsgi.application'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
-  'http://localhost:3000',
+  'http://localhost:3000','https://fanciful-travesseiro-168779.netlify.app/'
   'http://localhost:8080',
 ]
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://localhost:8080',]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://localhost:8080','https://fanciful-travesseiro-168779.netlify.app/']
 
 CORS_ALLOW_METHODS = [
     'DELETE',
