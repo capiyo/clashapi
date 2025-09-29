@@ -66,6 +66,8 @@ class Fixtures(models.Model):
     away_win=models.TextField(max_length=60)
     date=models.TextField(max_length=50 ,default="today")
     draw=models.TextField(max_length=50 ,default="today")
+    league=models.TextField(max_length=50 ,default="today")
+    
     
     
     class Meta:
