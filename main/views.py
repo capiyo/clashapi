@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 import  requests
 from django.views.decorators.csrf import csrf_exempt
-from .utils import createUser, login_user,getGames, getUserDetails,postMessage,add_pledges,get_pledges
+from .utils import createUser, login_user,getGames, getUserDetails,postMessage,add_pledges,get_pledges,add_posts,list_images
 from rest_framework.decorators import api_view
+import gridfs
 
 
 # Create your views here.
@@ -35,7 +36,10 @@ def getAllGames(request):
     return creategig(request)
     """
 
-
+@api_view(["GET"])
+def get_posts(request):
+    print("Am here")
+    return list_images(request)
 
 @api_view(['POST'])
 def posMessage(request):
@@ -119,6 +123,12 @@ def logout(request):
 @api_view(["GET"])
 def gigs(request):
     return getGigs(request)
+
+@api_view(['POST'])
+def add_post(request):    
+    print("Capiyo")
+    
+    return add_posts(request)
 
 
 def index(request):

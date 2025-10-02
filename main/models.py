@@ -58,7 +58,7 @@ class Users(AbstractBaseUser):
     
 
 class Fixtures(models.Model):
-    #id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     home_team = models.CharField(max_length=120)
     away_team= models.CharField(max_length=60)    
     time=models.TextField(max_length=60)
@@ -67,6 +67,7 @@ class Fixtures(models.Model):
     date=models.TextField(max_length=50 ,default="today")
     draw=models.TextField(max_length=50 ,default="today")
     league=models.TextField(max_length=50 ,default="today")
+  
     
     
     
@@ -75,6 +76,7 @@ class Fixtures(models.Model):
         db_table='fixtures'
         verbose_name = 'fixtures'
         verbose_name_plural ='fixtures'
+        ordering = ['date']
     def __str__(self):
         return self.email
     
@@ -115,26 +117,28 @@ class Pledges(models.Model):
         return True
     
     
+class FileMetadata(models.Model):
+    filename = models.CharField(max_length=255)
+    file_size = models.IntegerField()
+    upload_date = models.DateTimeField(auto_now_add=True)
+    content_type = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    
+    class Meta:
+        db_table = 'file_metadata'
+    
+    
     
     
 class Posts(models.Model):
-    #id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    username = models.CharField(max_length=120)
-    time= models.CharField(max_length=60)    
-    date=models.TextField(default="No Id")
-    info=models.TextField(max_length=60)
-    likes=models.TextField(max_length=50 ,default="thursday")
-    share=models.TextField(max_length=50,default=20)
-    comments=models.BooleanField(default=False)
-    country=models.TextField(max_length=50,default=20)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    poster = models.CharField(max_length=120)
+    time= models.CharField(max_length=60)        
+    captions=models.TextField(max_length=60)
+    fun=models.TextField(max_length=50,default=20)
     club=models.TextField(max_length=50)
-    field_name = models.ImageField(
-    upload_to=None, 
-    height_field=None, 
-    width_field=None, 
-    max_length=100, 
+    file = models.ImageField(upload_to='user_content/')
     
-)
     
     
     
@@ -144,6 +148,7 @@ class Posts(models.Model):
         db_table ='posts'
         verbose_name = 'posts'
         verbose_name_plural = 'posts'
+        ordering = ['time']
     def __str__(self):
         return self.homeTeam
     
@@ -160,6 +165,7 @@ class Pending(models.Model):
     receiverId= models.CharField(max_length=100)
     message = models.CharField(max_length=100)
     time = models.TextField() 
+    ordering = ['time']
     class Meta:
 
         db_table ='Pending'

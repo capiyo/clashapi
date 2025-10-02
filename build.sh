@@ -11,6 +11,8 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 # Only migrations (skip static files)
+python manage.py collectstatic
+
 echo "Applying database migrations..."
 python manage.py migrate
 

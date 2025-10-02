@@ -10,6 +10,8 @@ import json
 from datetime import datetime
 import pandas as pd
 from pymongo import MongoClient
+myclient = MongoClient("mongodb+srv://EngCapiyo:Capiyo%401010@cluster1.kbtey0y.mongodb.net/clash?retryWrites=true&w=majority&appName=Cluster1", tls=True, tlsAllowInvalidCertificates=True)
+
 
 class BetikaScraper:
     MONGODB_HOST = 'localhost'
@@ -18,7 +20,7 @@ class BetikaScraper:
     COLLECTION_NAME = 'games'
     #myclient=MongoClient(MONGODB_HOST,MONGODB_PORT)
    # mongodb+srv://EngCapiyo:Capiyo%401010@cluster1.kbtey0y.mongodb.net/Solvus?retryWrites=true&w=majority&appName=Cluster1
-    myclient = MongoClient("mongodb+srv://EngCapiyo:Capiyo%401010@cluster1.kbtey0y.mongodb.net/Solvus?retryWrites=true&w=majority&appName=Cluster1", tls=True, tlsAllowInvalidCertificates=True)
+    
   # mongodb+srv://apiyoosca_db_user:<db_password>@cluster1.llv3sbb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1
    
     mydb = myclient["clash"]
